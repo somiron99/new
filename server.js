@@ -53,7 +53,7 @@ app.post('/login', async (req, res) => {
 });
 
 // Add this route after your middleware and before app.listen
-app.get('/', (req, res) => {
+app.get('/todo-backend', (req, res) => {
   res.send('API is running!');
 });
 
