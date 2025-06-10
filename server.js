@@ -13,7 +13,12 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Connect to MongoDB (local)
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1); // Stop the server if DB connection fails
+  });
 
 // User schema
 const userSchema = new mongoose.Schema({
