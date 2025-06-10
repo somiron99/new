@@ -47,7 +47,7 @@ app.post('/login', async (req, res) => {
     res.json({ message: 'Login successful', token });
 });
 
-// Add this root route
+// Add this route after your middleware and before app.listen
 app.get('/', (req, res) => {
   res.send('API is running!');
 });
