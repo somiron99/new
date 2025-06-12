@@ -30,6 +30,9 @@ const User = mongoose.model('User', userSchema);
 // Signup route
 app.post('/signup', async (req, res) => {
     const { username, password } = req.body;
+    if (!username || !password || password.length < 6) {
+        return res.status(400).json({ error: 'Invalid username or password' });
+    }
     const hashed = await bcrypt.hash(password, 10);
     try {
         const user = new User({ username, password: hashed });
